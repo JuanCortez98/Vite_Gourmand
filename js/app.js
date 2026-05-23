@@ -247,6 +247,48 @@ function loadCombined(session) {
     .catch((err) => showMessage('Impossible de charger la comparaison : ' + err.message, 'error'));
 }
 
+function renderWarframesPage(data) {
+  setDocumentMeta('Warframes - Vite & Gourmand', 'Explorez les maquettes de l’interface et leur metadata.');
+  const items = Array.isArray(data) ? data : [];
+  appRoot.innerHTML = `
+    <section class="menus-hero">
+      <h1>Warframes</h1>
+      <p>Découvrez les designs métier et les modèles de l’application.</p>
+    </section>
+    <section class="menus-list">
+      <div class="container">
+        <div id="warframes-grid" class="menus-grid"></div>
+      </div>
+    </section>
+  `;
+  const grid = document.getElementById('warframes-grid');
+  if (!grid) return;
+  if (!items.length) {
+    grid.innerHTML = '<p>Aucune warframe disponible pour le moment.</p>';
+    return;
+  }
+  grid.innerHTML = items.map((item) => `
+    <div class="menu-card">
+      <div class="menu-header"><h2>${escapeHtml(item.name)}</h2><span class="menu-theme">${escapeHtml(item.category)}</span></div>
+      <div class="menu-info">
+        <p>${escapeHtml(item.description || 'Aucune description')}</p>
+        <p><strong>Fichier :</strong> ${escapeHtml(item.file_path)}</p>
+        <p><strong>Créé le :</strong> ${escapeHtml(item.created_at)}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function loadWarframesPage(session) {
+  fetch('api.php?resource=warframes')
+    .then((response) => response.json())
+    .then((payload) => {
+      if (!payload.ok) throw new Error(payload.error || 'Erreur API');
+      renderWarframesPage(payload.data);
+    })
+    .catch((err) => showMessage('Impossible de charger les warframes : ' + err.message, 'error'));
+}
+
 function loadPage(session) {
   switch (page) {
     case 'home':
@@ -272,6 +314,9 @@ function loadPage(session) {
         <section class="hero"><div class="container text-center"><h1>À propos de nous</h1><p>Votre traiteur familial à Bordeaux depuis 2001</p></div></section>
         <section class="about-section"><div class="container"><div class="row gy-5 align-items-center"><div class="col-lg-6"><img src="https://images.unsplash.com/photo-1556911220-b0b895fafb40?w=800" alt="Intérieur chaleureux" class="img-fluid"></div><div class="col-lg-6"><h3>Notre histoire</h3><p class="lead">Vite & Gourmand est né en 2001 à Bordeaux...</p></div></div></div></section>
       `, 'À propos - Vite & Gourmand', 'L’histoire et l’équipe de Vite & Gourmand.');
+      break;
+    case 'warframes':
+      loadWarframesPage(session);
       break;
     case 'legal':
       renderStaticPage(`

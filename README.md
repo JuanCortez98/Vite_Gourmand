@@ -58,7 +58,7 @@ Vite & Gourmand est une application web permettant aux clients des commander des
 Les pages publiques utilisent maintenant un shell commun `public/app.php` qui charge le contenu en JavaScript via `js/app.js`.
 
 - `public/api.php` sert une API centralisée pour les menus, les commandes, les warframes et la session utilisateur.
-- La page `public/index.php`, `public/menus.php`, `public/about.php`, `public/menus-mongo.php`, `public/menus-combined.php`, `public/mentions-legales.php` et `public/conditions-generales.php` sont des wrappers minimes qui incluent `app.php`.
+- La page `public/index.php`, `public/menus.php`, `public/about.php`, `public/menus-mongo.php`, `public/menus-combined.php`, `public/warframes.php`, `public/mentions-legales.php` et `public/conditions-generales.php` sont des wrappers minimes qui incluent `app.php`.
 - L'authentification et le token CSRF sont exposés via `public/api.php?resource=session` plutôt que via PHP embarqué dans chaque page.
 - Le projet utilise également MongoDB en tant que couche NoSQL optionnelle pour synchroniser les documents de menus et warframes.
 

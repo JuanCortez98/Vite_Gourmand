@@ -1,6 +1,6 @@
 ﻿<?php
 $page = $page ?? $_GET['page'] ?? 'home';
-$validPages = ['home', 'about', 'menus', 'menus-mongo', 'menus-combined', 'legal', 'terms'];
+$validPages = ['home', 'about', 'menus', 'menus-mongo', 'menus-combined', 'warframes', 'legal', 'terms'];
 if (!in_array($page, $validPages, true)) {
     $page = 'home';
 }
@@ -10,6 +10,7 @@ $bodyClassMap = [
     'menus' => 'menus-page',
     'menus-mongo' => 'menus-page',
     'menus-combined' => 'menus-page',
+    'warframes' => 'warframes-page',
     'legal' => 'legal-page',
     'terms' => 'legal-page',
 ];
@@ -42,6 +43,7 @@ $bodyClass = $bodyClassMap[$page] ?? 'page-shell';
             <li><a href="menus.php" data-page-link="menus">Menus SQL</a></li>
             <li><a href="menus-mongo.php" data-page-link="menus-mongo">Menus MongoDB</a></li>
             <li><a href="menus-combined.php" data-page-link="menus-combined">Menus SQL + MongoDB</a></li>
+            <li><a href="warframes.php" data-page-link="warframes">Warframes</a></li>
         </ul>
         <div class="auth-buttons" id="auth-root"></div>
         <button class="hamburger" aria-label="Ouvrir le menu" onclick="toggleMenu()">
