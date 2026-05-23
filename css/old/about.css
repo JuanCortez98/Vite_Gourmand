@@ -1,0 +1,186 @@
+:root {
+    --primary: #c0392b;
+    --primary-dark: #a93226;
+    --text: #2c3e50;
+    --light: #f8f9fa;
+    --gray: #6c757d;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    background: var(--light);
+    line-height: 1.6;
+}
+
+.header {
+    background: white;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+}
+
+.header.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo h1 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--primary);
+}
+
+.logo span { color: var(--primary); }
+
+.navmenu ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navmenu a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navmenu a:hover,
+.navmenu a.active { color: var(--primary)}
+
+/*Mobile toggle */
+.mobile-nav-toggle { font-size: 1.8rem; cursor: pointer; }
+
+/* Breadcrumb */
+.page-title {
+    background: var(--primary);
+    color: white;
+    padding: 3rem 0;
+}
+
+.page-title h1 { font-size: 2.5rem; }
+
+.breadcrumbs ol {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumbs a { color: white; text-decoration: none; }
+
+.breadcrumbs .current { font-weight:  600;}
+
+/*sections*/
+.section { padding: 6rem 0; }
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title h2 {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.about-img img {
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    width: 100%;
+}
+
+/*Equipe*/
+.equipe-section { background: white;}
+
+.team-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.item-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.member-img img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.member-info {
+    padding: 1.5rem;
+}
+
+.member-info h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.role {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/*Footer*/
+.footer {
+    background: #1a2533;
+    color: white;
+    padding: 4rem 0.2rem;
+}
+
+.footer a { color: #ccc; text-decoration: none; }
+
+.footer a:hover { color: white; }
+
+.sitename { color: var(--primary); font-weight: 700; }
+
+/*Scroll top */
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.scroll-top.show { opacity: 1; visibility: visible; }
+
+[data-aos] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+[data-aos].visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-aos ="fade-left"] { transform: translateX(-40px); }
+[data-aos ="fade-right"] { transform: translateX(40px); }
+
+[data-aos="fade-up"] { transform: translateY(40px); }

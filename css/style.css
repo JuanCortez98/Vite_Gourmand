@@ -1,0 +1,198 @@
+.navbar {
+  background: #1a2533;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.logo a {
+  color: #c0392b;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #c0392b;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-login {
+  background: #c0392b;
+  color: white;
+}
+
+.btn-login:hover {
+  background: #a93226;
+}
+
+.btn-logout {
+  background: #e74c3c;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-logout:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(231, 76, 60, 0.3);
+}
+
+.btn-register {
+  background: #27ae60;          
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-register:hover {
+  background: #219653;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
+}
+
+.btn-dashboard {
+    background: #3498db; /* azul bonito */
+    color: white;
+}
+.btn-dashboard:hover {
+    background: #2980b9;
+}
+
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/*Responsive media pour ecrans entre 768 et 481 */
+@media (max-width: 768) {
+  body {
+    font-size: 16px;
+  }
+  main {
+    padding: 1rem;
+    margin: 2rem auto;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  .navbar {
+    flex-direction: column !important;
+    padding: 1rem !important;
+    gap: 1rem !important;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #1e293b;
+    padding: 1rem 0;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    text-align: center !important;
+    gap: 1rem !important;
+    transition: all 04s ease;
+  }
+  .nav-links.active {
+    display: flex !important;
+  }
+  .nav-links li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+  .nav-links a {
+    width: 100% !important;
+    font-size: 1.2rem;
+    padding: 0.8rem !important;
+    display: block;
+  }
+  .btn, .btn-primary, .btn-danger, .btn-logout {
+    width: 100% !important;
+    padding: 1rem !important;
+    font-size: 1.1rem !important;
+  }
+  .admin-table, table {
+    display: block !important;
+    overflow: auto !important;
+    white-space: nowrap !important;
+  }
+  .form-section, .form-row {
+    padding: 1.2rem !important;
+  }
+  input, textarea, select {
+    font-size: 1rem !important;
+    padding: 0.9rem !important;
+  }
+  .menu-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .menu-card, .card-section {
+    padding: 1.2rem !important;
+  }
+  .hamburger {
+    display: block;
+  }
+}
+
+/*Responsive media pour les ecran >480*/
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  .logo {
+    font-size: 1.8rem !important;
+  }
+  .navbar {
+    padding: 0.8rem !important;
+  }
+  button, .btn {
+    font-size: 1rem !important;
+  }
+}

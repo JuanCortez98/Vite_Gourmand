@@ -1,0 +1,35 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Environment files
+.env
+*.env
+
+# Logs and temporary
+*.log
+*.tmp
+*.cache
+
+# Node / vendor
+node_modules/
+vendor/
+
+# PHPUnit
+phpunit.xml
+phpunit.xml.dist
+
+# Ignore composer lock if the project is not using composer
+composer.lock
+
+# Ignore generated files
+*.log
+*.bak
+*~
+
+# Executables
+*.exe
+*.dll
