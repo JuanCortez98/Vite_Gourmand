@@ -1,4 +1,6 @@
 <?php
+// Fichier de modèles simples pour séparer la logique de la base de données.
+// Classes POPO (PHP orienté objet simple) pour organiser les requêtes SQL.
 
 class MenuModel
 {

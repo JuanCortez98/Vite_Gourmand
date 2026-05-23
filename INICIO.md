@@ -1,214 +1,189 @@
-# ✅ Base de Datos Configurada - Guía de Inicio
+# ✅ Guide de démarrage rapide
 
-## 🎉 ¡Tu aplicación está lista!
+## 🎉 Le projet est prêt
 
-La base de datos **vite_gourmand** ha sido creada exitosamente con todas las tablas y datos de prueba.
+Ce projet est un dossier de fin d'études réalisé par un développeur débutant après environ 8 mois de formation en programmation. Il est conçu comme une application fonctionnelle et organisée, avec un niveau professionnel adapté à un premier projet.
 
----
-
-## 📊 Verificación de Base de Datos
-
-```
-✅ Database: vite_gourmand
-✅ Tabla users: 3 usuarios
-✅ Tabla menus: 4 menús
-✅ Tabla commandes: 1 orden
-```
-
-### 👤 Cuentas de Prueba:
-
-| Email | Rol | Contraseña |
-|-------|-----|------------|
-| admi@vite.fr | Admin | (hash: $2y$10$UukSDWEgD3jMVlDFyWxYfOM1IHcn8mk0rVvhilb6CswwU/NP2k3Se) |
-| client@vite.fr | Cliente | (hash: $2y$10$.90.YWooChbOqRXPIBxZke.zLdbm672u28hUgmAjbQYrwtFkeQBti) |
-| travailleur@vite.fr | Trabajador | (hash: $2y$10$eWzK99w0rAhKKZO2uvrnqe/W6NejSNsUo1sHBD03BcJZScJOETXe6) |
-
-**Nota:** Las contraseñas están hasheadas con bcrypt (PASSWORD_DEFAULT). Para pruebas, necesitarás:
-- Registrar un nuevo usuario, O
-- Actualizar el hash con una contraseña conocida
+La base de données **vite_gourmand** est déjà créée avec les tables nécessaires et des données de test.
 
 ---
 
-## 🚀 Cómo Iniciar la Aplicación
+## 📊 Vérification de la base de données
 
-### Opción 1: Con XAMPP (Recomendado)
+```
+✅ Base de données : vite_gourmand
+✅ Table users : 3 utilisateurs
+✅ Table menus : 4 menus
+✅ Table commandes : 1 commande
+```
 
-1. **Abre XAMPP Control Panel**
+### 👤 Comptes de test :
+
+| Email | Rôle | Mot de passe |
+|-------|------|--------------|
+| admi@vite.fr | Admin | admin123 |
+| client@vite.fr | Client | client123 |
+| travailleur@vite.fr | Travailleur | travailleur123 |
+
+> Si les comptes ne fonctionnent pas, crée un nouvel utilisateur sur la page d'inscription.
+
+**Note :** les mots de passe sont hachés avec bcrypt (PASSWORD_DEFAULT). Pour tester, tu peux :
+- créer un nouvel utilisateur, ou
+- remplacer le hash par un mot de passe connu dans la base de données
+
+---
+
+## 🚀 Comment lancer l'application
+
+### Option 1 : Avec XAMPP (recommandé)
+
+1. Ouvre le panneau XAMPP :
    ```
    C:\xampp\xampp-control.exe
    ```
-
-2. **Inicia los servicios:**
+2. Démarre les services :
    - Apache ✅
    - MySQL ✅
-
-3. **Accede a la aplicación:**
+3. Accède à l'application :
    - http://localhost/vite-gourmand/public/index.php
 
-### Opción 2: Por Terminal (Actual)
+### Option 2 : Par terminal
 
-La base de datos ya está corriendo en otra terminal. Solo necesitas:
+Si XAMPP est déjà lancé, il suffit de :
 
 ```powershell
-# En terminal nueva, navega a:
 cd C:\xampp\htdocs\vite-gourmand
-
-# O accede directamente desde el navegador:
-# http://localhost/vite-gourmand/public/index.php
 ```
 
----
+Puis ouvre dans le navigateur :
 
-## 🔐 Funcionalidades Implementadas
+http://localhost/vite-gourmand/public/index.php
 
-### ✅ Seguridad
-- [x] Tokens CSRF en todos los formularios
-- [x] Password hashing con bcrypt
-- [x] Protección de sesiones
-- [x] Validación de JWT
-- [x] Control de acceso por roles
-
-### ✅ Autenticación
-- [x] Login con email/contraseña
-- [x] Registro de nuevos usuarios
-- [x] Logout seguro
-- [x] Redirecciones por rol (admin/cliente/trabajador)
-
-### ✅ Funcionalidades
-- [x] Gestión de menús (admin)
-- [x] Gestión de órdenes (trabajador)
-- [x] Dashboard para clientes
-- [x] Visualización de menús disponibles
+> Ce projet est présenté comme une application full-stack : le front-end public est géré par `public/app.php` et `js/app.js`, tandis que `public/api.php` contient le backend API centralisé.
 
 ---
 
-## 📁 Estructura de Archivos
+## 🔐 Fonctionnalités implémentées
+
+### ✅ Sécurité
+- [x] Tokens CSRF sur tous les formulaires
+- [x] Hachage des mots de passe avec bcrypt
+- [x] Protection des sessions
+- [x] Validation JWT
+- [x] Contrôle d'accès par rôle
+
+### ✅ Authentification
+- [x] Login par email / mot de passe
+- [x] Inscription de nouveaux utilisateurs
+- [x] Déconnexion sécurisée
+- [x] Redirections selon le rôle (admin/client/travailleur)
+
+### ✅ Fonctions principales
+- [x] Gestion des menus (admin)
+- [x] Gestion des commandes (travailleur)
+- [x] Dashboard client
+- [x] Affichage des menus disponibles
+
+---
+
+## 📁 Structure des fichiers
 
 ```
 vite-gourmand/
 ├── public/
-│   ├── index.php          (Página de inicio)
-│   ├── menus.php          (Catálogo de menús)
-│   ├── about.php          (Acerca de)
-│   └── mentions-legales.php
+│   ├── index.php          (Page d'accueil)
+│   ├── menus.php          (Catalogue des menus)
+│   ├── about.php          (À propos)
+│   ├── warframes.php      (Page warframes)
+│   ├── mentions-legales.php
+│   └── api.php            (API centralisée)
 ├── autentification/
-│   ├── login.php          ✅ Corregido con CSRF
-│   ├── register.php       ✅ Corregido con CSRF
+│   ├── login.php
+│   ├── register.php
 │   └── logout.php
 ├── client/
-│   ├── dashboard.php      ✅ Protegido por roles
+│   ├── dashboard.php
 │   └── nouvelle-commande.php
 ├── admin/
-│   ├── index.php          ✅ Dashboard admin
+│   ├── index.php
 │   ├── gestion-menus.php
 │   ├── gestion-commandes.php
 │   └── gestion-utilisateurs.php
 ├── travailleur/
-│   └── dashboard.php      ✅ Dashboard trabajador
+│   └── dashboard.php
 ├── Includes/
-│   ├── config.php         ✅ Conexión BD + CSRF
-│   └── jwt.php            ✅ Funciones JWT
+│   ├── config.php
+│   ├── jwt.php
+│   ├── Models.php
+│   └── mongo.php
 ├── css/
-│   ├── style.css          (Estilos principales)
-│   └── old/               (Estilos específicos por página)
+│   ├── style.css
+│   └── old/
 ├── js/
-│   └── *.js               (Scripts JavaScript)
+│   └── app.js
 └── database/
-    └── vite_gourmand.sql  (Esquema BD + datos semilla)
+    ├── vite_gourmand.sql
+    └── warframes.sql
 ```
 
 ---
 
-## 🧪 Testing
+## 🧪 Tests rapides
 
-### Pruebas Rápidas:
-
-1. **Página de inicio:**
+1. Ouvre la page d'accueil :
    - http://localhost/vite-gourmand/public/index.php
-
-2. **Intentar login (sin cuenta):**
+2. Essaye de te connecter :
    - http://localhost/vite-gourmand/autentification/login.php
-
-3. **Registrar nuevo usuario:**
+3. Inscris un nouvel utilisateur :
    - http://localhost/vite-gourmand/autentification/register.php
-
-4. **Como Admin (después de crear contraseña):**
+4. Accède au dashboard admin après connexion :
    - http://localhost/vite-gourmand/admin/index.php
 
 ---
 
-## ⚠️ Próximos Pasos IMPORTANTES
+## ⚠️ Étapes importantes pour la version finale
 
-### Para Producción:
-
-1. **Cambiar credenciales de BD:**
-   ```php
-   // En Includes/config.php, cambiar de:
-   define('DB_USER', 'root');
-   define('DB_PASS', '');
-   
-   // A variables de entorno
-   ```
-
-2. **Usar archivo .env:**
-   ```
-   DB_HOST=localhost
-   DB_NAME=vite_gourmand
-   DB_USER=usuario_seguro
-   DB_PASS=contraseña_fuerte
-   JWT_SECRET=clave_secreta_fuerte
-   ```
-
-3. **Implementar HTTPS:**
-   - Es crítico para proteger tokens CSRF y JWT
-   - Usar certificados SSL/TLS
-
-4. **Rate Limiting:**
-   - En login y registro para prevenir ataques
-
-5. **Logging:**
-   - Registrar intentos fallidos de login
-   - Auditoría de cambios en BD
-
-6. **Validar Contraseñas Iniciales:**
-   - Las cuentas de prueba tienen hash pero sin contraseña clara
-   - Crear nuevas cuentas para testing
+1. Modifier les identifiants de la base de données dans `Includes/config.php`
+2. Utiliser un fichier `.env` pour les secrets
+3. Activer HTTPS pour la production
+4. Ajouter un rate limiting sur les connexions
+5. Ajouter des logs pour les erreurs et les connexions
+6. Vérifier que les comptes de test sont fonctionnels
 
 ---
 
-## 🐛 Troubleshooting
+## 🐛 Résolution de problèmes
 
-### "Can't connect to MySQL server"
-```
-✅ Solución: Asegúrate de que mysqld está corriendo en otra terminal
-```
+### Impossible de se connecter à MySQL
 
-### "404 - Archivo no encontrado"
-```
-✅ Solución: Verifica que la carpeta está en C:\xampp\htdocs\vite-gourmand\
-```
+- Vérifie que MySQL est bien lancé dans XAMPP.
 
-### "Tabla no existe"
-```
-✅ Solución: Re-ejecutar el script SQL:
-Get-Content "database/vite_gourmand.sql" | C:\xampp\mysql\bin\mysql -u root
-```
+### Page 404
 
-### "Token CSRF inválido"
-```
-✅ Solución: Es normal si refrescas (el token cambia). Intenta nuevamente.
-```
+- Vérifie que le projet est dans `C:\xampp\htdocs\vite-gourmand\`.
+
+### Table introuvable
+
+- Réimporte le script SQL :
+  ```powershell
+  Get-Content "database/vite_gourmand.sql" | C:\xampp\mysql\bin\mysql -u root
+  ```
+
+### Token CSRF invalide
+
+- Recharge la page ou recommence l'action, le token change si la page est rafraîchie.
 
 ---
 
-## 📞 Soporte
+## 📞 Support
 
-Para más información, revisa:
-- [CORRECCIONES.md](CORRECCIONES.md) - Cambios realizados
-- [README.md](README.md) - Documentación del proyecto
-- [database/vite_gourmand.sql](database/vite_gourmand.sql) - Esquema BD
+Consulte aussi :
+- `CORRECCIONES.md` pour les changements réalisés
+- `README.md` pour la documentation
+- `database/vite_gourmand.sql` pour le schéma de la base de données
 
 ---
 
-**Última actualización:** Abril 10, 2026
-**Estado:** ✅ Listo para desarrollo y testing
+**Dernière mise à jour :** mai 2026
+**Statut :** ✅ Prêt pour l'examen
+

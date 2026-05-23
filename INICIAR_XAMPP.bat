@@ -1,16 +1,16 @@
 @echo off
-REM Script para iniciar XAMPP (Apache + MySQL) fácilmente
+REM Script pour démarrer XAMPP (Apache + MySQL) facilement
 
 echo =========================================
 echo   INICIANDO XAMPP - VITE GOURMAND
 echo =========================================
 echo.
 
-REM Verificar si está corriendo como admin
+REM Vérifier si le script est lancé en administrateur
 net session >nul 2>&1
 if %errorLevel% neq 0 (
-    echo ERROR: Este script debe ejecutarse como Administrador
-    echo Haz click derecho en el archivo y selecciona "Ejecutar como administrador"
+    echo ERREUR : Ce script doit être exécuté en tant qu'administrateur
+    echo Cliquez droit sur le fichier et sélectionnez "Exécuter en tant qu'administrateur"
     pause
     exit /b 1
 )

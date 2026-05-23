@@ -1,132 +1,139 @@
-# Vite & Gourmand - Application de menus a domicile
+# Vite & Gourmand - Projet scolaire
 
 ## Description
-Vite & Gourmand est une application web permettant aux clients des commander des menus préprés par un traiteur, aux serveurs (travailleurs) de les préparer et servir, et à l'administrateur de gérer l'ensemble du système.
+Ce projet est un dossier de fin d'études réalisé par un développeur débutant après environ 8 mois de formation. L'objectif est de présenter une application fonctionnelle, structurée et claire, tout en montrant une progression professionnelle.
 
-**Date** : Février 2026
-**ECF Développeur web et web mobile - Niveau 5**
+Le projet utilise une architecture full-stack : un front-end JavaScript côté client (`public/app.php` + `js/app.js`) qui consomme un backend PHP centralisé via `public/api.php`.
 
-# Technologies utilisées
+L'application permet de passer des commandes pour un traiteur avec trois rôles : administrateur, client et travailleur.
 
--PHP 8+
--MySQL 8+
--HTML5 / CSS / Javascript
--PDO pour les requêtes sécurisées (contre injections SQL)
--Protection CSRF sur les formulaires POST
--Sessions PHP pour authentification et panier
--Responsive design (media queries + burger menu)
+**Date** : mai 2026
+**Niveau** : Projet étudiant / examen final
+
+## Ce que j'ai utilisé
+
+- PHP 8+
+- MySQL 8+
+- HTML5 / CSS / JavaScript
+- PDO pour les requêtes SQL
+- Protection CSRF pour les formulaires POST
+- Sessions PHP pour l'authentification et le panier
+- Une mise en page responsive simple avec CSS
 
 ## Rôles utilisateurs
--- **Admin** : gestion complète (utilisateurs, menus, commandes)
---**Client** : consulter ses commandes, passer une nouvelle commande avec panier
---**Travailleur** : voir les commandes et attente,marquer comme "prête" ou "servie"
+- **Admin** : gère les utilisateurs, les menus et les commandes.
+- **Client** : consulte ses commandes et passe de nouvelles commandes.
+- **Travailleur** : voit les commandes en cours et marque les commandes prêtes.
 
 ## Fonctionnalités principales
--Authentification avec rôles (login / register)
--CRUD complet sur utilisateurs, menus et commandes
--Panier simple côtë client (ajout / retrait de menus, cacul total)
--Changement de status des commandes (en_cours -> prête -> servie)
--Pages publiques : Accueil, À propos et Menu (sans login(menu tu dois faire login pour ajouter la commande au panier))
--Protection CSRF sur tous les formulaires POST
--Responsive mobile (menu burger, scroll horizontal sur tables)
+- Authentification avec rôles (login / inscription)
+- CRUD pour utilisateurs, menus et commandes
+- Panier simple pour le client
+- Changement de statut des commandes (en_cours -> prête -> servie)
+- Pages publiques : Accueil, À propos, Menus
+- Protection CSRF sur tous les formulaires POST
+- Interface responsif basique
 
 ## Installation et configuration
 1. Installer **XAMPP** (Apache et MySQL)
 2. Démarrer Apache et MySQL
-3. Créer une basé de données nomme 'vite_gourmand'
-4. Importer les scripts SQL : 'database/vite_gourmand.sql' et 'database/warframes.sql'
-5. Copier le projet dans 'C:\xampp\htdocs\vite-gourmand'
-6. Accéder à l'application : 'http://localhost/vite-gourmand'
+3. Créer la base de données `vite_gourmand`
+4. Importer les scripts SQL : `database/vite_gourmand.sql` et `database/warframes.sql`
+5. Copier le projet dans `C:\xampp\htdocs\vite-gourmand`
+6. Ouvrir `http://localhost/vite-gourmand`
 
-**Utilisateur de test** :
--Admin : admi@vite.fr / admin123
+**Comptes de test** :
+- Admin : admi@vite.fr / admin123
 - Client : client@vite.fr / client123
 - Travailleur : travailleur@vite.fr / travailleur123
 
 ## Structure du projet
 
-- 'admin/' -> Interface administrateur
-- 'client/' -> Interface client
-- 'travailleur/' -> Interface serveur
-- 'Includes/' -> Configuration (connexion BD, fonctions CSRF)
-- 'css/' -> Styles globaux et personnalisées pour différentes pages web
-- 'database/' -> Scripts SQL et schémas de la base de données
-- 'assets/' -> Warframes et captures d'écran
+- `admin/` -> Interface administrateur
+- `client/` -> Interface client
+- `travailleur/` -> Interface travailleur
+- `Includes/` -> Configuration (connexion BD, fonctions CSRF, modèle)
+- `css/` -> Styles globaux et fichiers CSS
+- `js/` -> Scripts JavaScript côté client
+- `database/` -> Scripts SQL et schéma
+- `public/` -> Pages publiques et API
+- `assets/` -> Warframes et captures d'écran
 
-## Architecture front-end actuelle
+## Organisation front-end
 
-Les pages publiques utilisent maintenant un shell commun `public/app.php` qui charge le contenu en JavaScript via `js/app.js`.
+Les pages publiques utilisent un shell commun `public/app.php` qui affiche le contenu avec JavaScript via `js/app.js`.
 
-- `public/api.php` sert une API centralisée pour les menus, les commandes, les warframes et la session utilisateur.
-- La page `public/index.php`, `public/menus.php`, `public/about.php`, `public/menus-mongo.php`, `public/menus-combined.php`, `public/warframes.php`, `public/mentions-legales.php` et `public/conditions-generales.php` sont des wrappers minimes qui incluent `app.php`.
-- L'authentification et le token CSRF sont exposés via `public/api.php?resource=session` plutôt que via PHP embarqué dans chaque page.
-- Le projet utilise également MongoDB en tant que couche NoSQL optionnelle pour synchroniser les documents de menus et warframes.
+- `public/api.php` sert de point central pour les menus, les commandes, les warframes et la session.
+- Les pages `public/index.php`, `public/menus.php`, `public/about.php`, `public/menus-mongo.php`, `public/menus-combined.php`, `public/warframes.php`, `public/mentions-legales.php` et `public/conditions-generales.php` incluent toutes `app.php`.
+- Le front-end public est rendu dynamiquement côté client par `js/app.js` : les pages consomment l'API via `fetch()` et affichent leurs sections sans recharger toute la structure.
+- L'authentification, la session et le token CSRF sont exposés via `public/api.php?resource=session`, ce qui réduit l'utilisation de PHP direct dans les pages publiques.
+- Une partie MongoDB est fournie comme démonstration optionnelle d'une architecture hybride SQL/NoSQL.
 
-## Warframes de l'interface utilisateur
+## Warframes / maquettes
 
-Les maquettes de l'interface sont maintenant rangées dans `assets/warframes/`.
-Placez vos fichiers PNG/JPEG ici pour garder l'organisation propre.
+La dossier `assets/warframes/` contient les maquettes de l'interface.
+La base de données SQL contient une table `warframes` pour stocker les métadonnées de design, et l'API peut renvoyer ces données via `public/api.php?resource=warframes`.
 
-Le projet contient aussi une table SQL `warframes` pour stocker les métadonnées de design et un endpoint API qui peut exposer ces données via `public/api.php?resource=warframes`.
-
-- Warframe Page d’accueil : `assets/warframes/warframe-accueil.png`
-- Warframe Connexion : `assets/warframes/warframe-login.png`
-- Warframe Inscription : `assets/warframes/warframe-register.png`
-- Warframe Dashboard client : `assets/warframes/warframe-dashboard-client.png`
-- Warframe Nouvelle commande : `assets/warframes/warframe-nouvelle-commande.png`
-- Warframe Dashboard admin : `assets/warframes/warframe-dashboard-admin.png`
+- Maquette Accueil : `assets/warframes/warframe-accueil.png`
+- Maquette Login : `assets/warframes/warframe-login.png`
+- Maquette Inscription : `assets/warframes/warframe-register.png`
+- Maquette Dashboard Client : `assets/warframes/warframe-dashboard-client.png`
+- Maquette Nouvelle commande : `assets/warframes/warframe-nouvelle-commande.png`
+- Maquette Dashboard Admin : `assets/warframes/warframe-dashboard-admin.png`
 
 ## Captures d'écran
 
-Les captures finales sont stockées dans `assets/captures/`.
-Ajoutez les images de validation ici pour le rendu et la présentation.
+Les captures sont dans `assets/captures/`.
 
 1. Accueil — `assets/captures/Accueil.jpeg`
 2. Page À propos — `assets/captures/About.jpeg`
 3. Login — `assets/captures/login.jpeg`
-4. Register — `assets/captures/register.jpeg`
+4. Inscription — `assets/captures/register.jpeg`
 5. Dashboard Client — `assets/captures/dashboard-client.jpeg`
 6. Nouvelle commande (client) — `assets/captures/nouvelle-commande.jpeg`
 7. Dashboard Travailleur — `assets/captures/dashboard-travailleur.jpeg`
 8. Dashboard Admin — `assets/captures/dashboard-admin.jpeg`
-9. Gestion Utilisateurs (administrateur seulement) — `assets/captures/gestion-utilisateurs-admin.jpeg`
-10. Gestion Menus (administrateur seulement) — `assets/captures/gestion-menus-admin.jpeg`
-11. Gestion Commandes (administrateur seulement) — `assets/captures/gestion-commandes-admin.jpeg`
+9. Gestion Utilisateurs (admin) — `assets/captures/gestion-utilisateurs-admin.jpeg`
+10. Gestion Menus (admin) — `assets/captures/gestion-menus-admin.jpeg`
+11. Gestion Commandes (admin) — `assets/captures/gestion-commandes-admin.jpeg`
 
-## Diagramme Entité-Relation
+## Diagramme ER
 
-Diagramme ERD disponible dans `assets/captures/diagramme-erd-vite-gourmand.png`.
+Diagramme ER disponible dans `assets/captures/diagramme-erd-vite-gourmand.png`.
 
-Relations entre les tables users, menus, commandes et ligne_commande.
+Relations entre les tables `users`, `menus`, `commandes` et `ligne_commande`.
 
-## Architecture objet-relationnelle
+## Architecture orientée objet
 
-Le dossier `Includes/Models.php` expose des classes OOP pour manipuler les données :
+Dans `Includes/Models.php`, il y a des classes simples pour gérer les données :
 - `MenuModel` pour les menus SQL
-- `OrderModel` pour la création de commandes et la logique de transaction
-- `WarframeModel` pour les métadonnées warframes
+- `OrderModel` pour créer les commandes et gérer les transactions
+- `WarframeModel` pour les métadonnées des warframes
 
-Cette couche sépare la logique métier de la présentation et facilite le passage de SQL à du code orienté objets.
+Cette couche sépare la logique métier de l'affichage.
 
 ## NoSQL et MongoDB
 
-Une couche NoSQL optionnelle est disponible depuis `Includes/mongo.php`.
-Elle permet de synchroniser des collections MongoDB avec les données SQL existantes, notamment :
-- `menus` via `public/api.php?resource=menus-mongo`
-- `warframes` via `public/api.php?resource=warframes-mongo`
+Une partie optionnelle utilise MongoDB dans `Includes/mongo.php`.
+C'est un exemple pour montrer une architecture hybride SQL/NoSQL.
+- Menus MongoDB : `public/api.php?resource=menus-mongo`
+- Warframes MongoDB : `public/api.php?resource=warframes-mongo`
 
-Cela montre une architecture hybride SQL/NoSQL utile pour un projet plus grand.
+## Sécurité
+- Requêtes PDO pour limiter l'injection SQL
+- Protection CSRF sur les formulaires
+- Contrôle de rôle sur les pages privées
+- Mots de passe hachés avec bcrypt
 
-   ## Sécurité mise en place
-   - Requêtes préparées PDO (contre injections SQL)
-   - Protection CSRG sur tous les formulaires POST
-   - Vérification stricte des rôles sur chaque page privée
-   - Hashage des mots de passe (bcrypt)
+## Améliorations possibles
+- Ajouter un paiement simulé ou Stripe
+- Gérer le stock réel quand une commande est passée
+- Ajouter des notifications par email ou messages toast
+- Faire une recherche et des filtres dans les menus
 
-   ## Améliorations possibles
-   - Paiement simulé ou intégration Stripe
-   - Gestion du stock réel (décrémenter lors de commande)
-   - Notifications email ou toast JS
-   - Recherche / filtre avancé dans les menus
+---
 
-Projet réalise pour l'ECF développeur Web et Web Mobile - février 2026
+> Ce projet est présenté comme un dossier professionnel simple, créé par un développeur en début de carrière. Le code est structuré et clair, mais il reste évolutif pour une mise en production plus avancée.
+
+**Dernière mise à jour :** mai 2026
+**Statut :** ✅ Prêt pour validation et examen

@@ -1,170 +1,170 @@
-# 🔧 Correcciones Realizadas - Vite & Gourmand
+# 🔧 Corrections effectuées - Vite & Gourmand
 
-## Resumen
-Se han corregido múltiples errores de seguridad, sintaxis e inconsistencias en el código para asegurar que esté listo para producción.
-
+## Résumé
+Des corrections ont été apportées pour améliorer la sécurité, la syntaxe et la cohérence du projet. Le but est de présenter un dossier propre et adapté à un projet d'examen.
+Ce document a aussi été mis à jour pour renforcer la présentation full-stack et détailler la structure front-end / back-end.
 ---
 
-## 📋 Correcciones Detalladas
+## 📋 Corrections détaillées
 
 ### 1. **Includes/config.php** ✅
-**Problemas identificados:**
-- Typo en verificación CSRF: `$_POST['csr_token']` → debería ser `$_POST['csrf_token']`
-- Falta regeneración segura del token después de su uso
-- Falta establecer código HTTP 403 en caso de error CSRF
+**Problèmes identifiés :**
+- Typo dans la vérification CSRF : `$_POST['csr_token']` au lieu de `$_POST['csrf_token']`
+- Absence de régénération du token après utilisation
+- Pas de code HTTP 403 en cas d'erreur CSRF
 
-**Cambios realizados:**
-- ✅ Corregido el typo en la verificación CSRF
-- ✅ Agregada regeneración automática del token después de verificarlo
-- ✅ Agregado `http_response_code(403)` para rechazar solicitudes CSRF inválidas
+**Modifications :**
+- ✅ Correction du typo de vérification CSRF
+- ✅ Ajout de la régénération automatique du token après validation
+- ✅ Ajout de `http_response_code(403)` pour les requêtes CSRF invalides
 
 ---
 
 ### 2. **Includes/jwt.php** ✅
-**Problemas identificados:**
-- Variable mal nombrada: `$header` se usaba en `"header.$payloadEncoded"` (literal string)
-- Typo en variable: `$signautre` (debería ser `$signatureEncoded`)
-- Firma incorrecta: Usaba string literal `"header"` en lugar de la variable codificada
-- Typo en función: `json_Decode` → debería ser `json_decode`
-- Lógica invertida: `if ($payload) return false;` → debería ser `if (!$payload) return false;`
-- Token no se devolvía correctamente en `generateJWT()`
+**Problèmes identifiés :**
+- Mauvais nom de variable pour l'encodage du header
+- Typo `$signautre` au lieu de `$signatureEncoded`
+- Signature JWT incorrecte avec la chaîne littérale `"header"`
+- Typo `json_Decode` au lieu de `json_decode`
+- Logique inversée dans la validation du payload
+- Token non renvoyé correctement par `generateJWT()`
 
-**Cambios realizados:**
-- ✅ Renombrada `$header` a `$headerEncoded` para claridad
-- ✅ Corregida firma JWT usando variables correctas
-- ✅ Corregida función `json_decode` con mayúscula correcta
-- ✅ Corregida lógica de validación de payload
-- ✅ Token ahora se devuelve correctamente codificado
+**Modifications :**
+- ✅ Nom de variable corrigé pour le header encodé
+- ✅ Signature JWT recalculée avec les bonnes variables
+- ✅ Utilisation correcte de `json_decode`
+- ✅ Validation du payload corrigée
+- ✅ Renvoi du token correctement encodé
 
 ---
 
 ### 3. **autentification/login.php** ✅
-**Problemas identificados:**
-- Sin protección CSRF contra ataques XSS
-- Falta incluir token CSRF en el formulario HTML
+**Problèmes identifiés :**
+- Absence de protection CSRF dans le formulaire
+- Token CSRF manquant dans le HTML
 
-**Cambios realizados:**
-- ✅ Agregada verificación `verifyCsrfToken()` al procesar el POST
-- ✅ Agregado campo oculto `<input type="hidden" name="csrf_token" value="...">` en el formulario
+**Modifications :**
+- ✅ Ajout de `verifyCsrfToken()` dans le traitement POST
+- ✅ Ajout du champ caché CSRF dans le formulaire
 
 ---
 
 ### 4. **autentification/register.php** ✅
-**Problemas identificados:**
-- Sin protección CSRF en el formulario de registro
-- Validación de email pero sin CSRF
+**Problèmes identifiés :**
+- Formulaire d'inscription sans protection CSRF
+- Validation d'email correcte, mais pas de CSRF
 
-**Cambios realizados:**
-- ✅ Agregada verificación `verifyCsrfToken()` al procesar el POST
-- ✅ Agregado campo oculto de CSRF en el formulario
+**Modifications :**
+- ✅ Ajout de `verifyCsrfToken()` dans le traitement POST
+- ✅ Ajout du champ caché CSRF dans le formulaire
 
 ---
 
 ### 5. **client/dashboard.php** ✅
-**Problemas identificados:**
-- Typo en ruta: `'../includes/config.php'` → debería ser `'../Includes/config.php'` (mayúscula)
-- Lógica de protección al revés: Redirigía a sí mismo (`../client/dashboard.php`)
+**Problèmes identifiés :**
+- Mauvais chemin vers `Includes/config.php`
+- Redirection vers la même page au lieu de la page public
 
-**Cambios realizados:**
-- ✅ Corregida ruta a `'../Includes/config.php'`
-- ✅ Cambiada redirección a `'../public/index.php'` (página de inicio)
+**Modifications :**
+- ✅ Chemin corrigé vers `Includes/config.php`
+- ✅ Redirection modifiée vers `../public/index.php`
 
 ---
 
 ### 6. **admin/index.php** ✅
-**Problemas identificados:**
-- Rutas con case-sensitive: `'/../includes/config.php'` → debe ser `'/../Includes/config.php'`
+**Problèmes identifiés :**
+- Mauvais dossier `includes` en minuscules
 
-**Cambios realizados:**
-- ✅ Corregidas rutas a `Includes` (mayúscula)
+**Modifications :**
+- ✅ Correctif des chemins vers `Includes`
 
 ---
 
 ### 7. **admin/gestion-commandes.php** ✅
-**Problemas identificados:**
-- Ruta incorrecta: `'/../includes/config.php'`
-- Redirección incompleta: `header('Location: ../autentification/login');` falta `.php`
+**Problèmes identifiés :**
+- Mauvais chemin vers `Includes/config.php`
+- Redirection vers login sans `.php`
 
-**Cambios realizados:**
-- ✅ Corregida ruta a `Includes`
-- ✅ Agregada extensión `.php` a redirección de login
+**Modifications :**
+- ✅ Correction du chemin `Includes`
+- ✅ Ajout de l'extension `.php` à la redirection
 
 ---
 
 ### 8. **admin/gestion-menus.php** ✅
-**Problemas identificados:**
-- Ruta incorrecta: `'/../includes/config.php'`
-- Redirección incompleta: falta `.php`
+**Problèmes identifiés :**
+- Mauvais chemin vers `Includes/config.php`
+- Redirection incomplète sans `.php`
 
-**Cambios realizados:**
-- ✅ Corregida ruta a `Includes`
-- ✅ Agregada extensión `.php`
+**Modifications :**
+- ✅ Correction du chemin `Includes`
+- ✅ Ajout de l'extension `.php`
 
 ---
 
 ### 9. **admin/gestion-utilisateurs.php** ✅
-**Problemas identificados:**
-- Ruta incorrecta: `'/../includes/config.php'`
-- Redirección incompleta
+**Problèmes identifiés :**
+- Mauvais chemin vers `Includes/config.php`
+- Redirection incomplète
 
-**Cambios realizados:**
-- ✅ Corregida ruta a `Includes`
-- ✅ Agregada extensión `.php`
+**Modifications :**
+- ✅ Correction du chemin `Includes`
+- ✅ Ajout de l'extension `.php`
 
 ---
 
 ### 10. **travailleur/dashboard.php** ✅
-**Problemas identificados:**
-- Redirección mal formada sin dos puntos: `header ('Location ../travailleur/dashboard.php');`
-- Redirigía a sí mismo (lógica al revés)
+**Problèmes identifiés :**
+- Redirection mal formée
+- Redirection vers la même page
 
-**Cambios realizados:**
-- ✅ Corregida sintaxis: `header('Location: ../public/index.php');`
+**Modifications :**
+- ✅ Correction de la syntaxe de `header('Location: ../public/index.php');`
 
 ---
 
 ### 11. **client/nouvelle-commande.php** ✅
-**Problemas identificados:**
-- Ruta incorrecta: `'../includes/config.php'`
-- Redirección incompleta en header
+**Problèmes identifiés :**
+- Mauvais chemin vers `Includes/config.php`
+- Redirection incomplète dans `header`
 
-**Cambios realizados:**
-- ✅ Corregida ruta a `Includes`
-- ✅ Agregada extensión `.php`
-
----
-
-## 🔒 Mejoras de Seguridad Implementadas
-
-| Aspecto | Cambio |
-|--------|--------|
-| **CSRF** | Tokens CSRF ahora regenerados después de cada validación |
-| **JWT** | Firma JWT corregida para ser criptográficamente válida |
-| **Rutas** | Todas las rutas ahora usan mayúsculas consistentes (`Includes`) |
-| **Headers** | Códigos HTTP apropiados en errores CSRF (403) |
-| **Redirecciones** | Todas las redirecciones ahora tienen sintaxis correcta y extensión `.php` |
+**Modifications :**
+- ✅ Correction du chemin `Includes`
+- ✅ Ajout de l'extension `.php`
 
 ---
 
-## 🧪 Pasos Siguientes Recomendados
+## 🔒 Améliorations de sécurité mises en place
 
-1. ✅ Testear todas las rutas de autenticación (login, register, logout)
-2. ✅ Verificar que los dashboards se cargan correctamente
-3. ✅ Probar que los tokens CSRF funcionan en todos los formularios
-4. ✅ Validar JWT si se está usando en APIs
-5. ✅ Implementar HTTPS en producción (muy importante)
-6. ✅ Usar variables de entorno para credenciales BD (en producción)
-7. ✅ Implementar rate limiting en funciones de login/register
-8. ✅ Agregar logging de intentos fallidos de autenticación
-
----
-
-## 📝 Notas Importantes
-
-- El token CSRF_SECRET está visible en el código. Se recomienda usar variables de entorno en producción.
-- Las credenciales de BD están hardcodeadas. Se debe usar un archivo `.env` o variables de entorno.
-- Sin HTTPS, los tokens CSRF y JWT pueden ser interceptados. HTTPS es crítico en producción.
+| Aspect | Changement |
+|--------|------------|
+| **CSRF** | Tokens CSRF régénérés après chaque validation |
+| **JWT** | Signature JWT corrigée |
+| **Chemins** | Consistance `Includes` (majuscules) |
+| **Headers** | Codes HTTP corrects pour les erreurs CSRF |
+| **Redirections** | Toutes les redirections ont maintenant `.php` |
 
 ---
 
-**Actualizado:** Abril 10, 2026
+## 🧪 Étapes suivantes recommandées
+
+1. ✅ Tester toutes les routes d'authentification (login, register, logout)
+2. ✅ Vérifier que les tableaux de bord se chargent correctement
+3. ✅ Vérifier que les tokens CSRF fonctionnent sur tous les formulaires
+4. ✅ Valider JWT si utilisé dans les APIs
+5. ✅ Mettre en place HTTPS en production
+6. ✅ Utiliser des variables d'environnement pour les identifiants BD en production
+7. ✅ Ajouter du rate limiting sur le login / register
+8. ✅ Ajouter du logging pour les échecs d'authentification
+
+---
+
+## 📝 Notes importantes
+
+- Le secret CSRF est visible dans le code. En production, il faut utiliser des variables d'environnement.
+- Les identifiants BD sont codés en dur. En production, il faut utiliser un fichier `.env` ou des variables d'environnement.
+- Sans HTTPS, les tokens CSRF et JWT peuvent être interceptés.
+
+---
+
+**Mis à jour :** avril 2026

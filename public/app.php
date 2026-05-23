@@ -1,4 +1,5 @@
 ﻿<?php
+// Front-end shell pour les pages publiques : HTML statique + rendu dynamique côté client via js/app.js.
 $page = $page ?? $_GET['page'] ?? 'home';
 $validPages = ['home', 'about', 'menus', 'menus-mongo', 'menus-combined', 'warframes', 'legal', 'terms'];
 if (!in_array($page, $validPages, true)) {
