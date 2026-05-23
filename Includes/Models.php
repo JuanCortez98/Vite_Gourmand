@@ -79,3 +79,35 @@ class OrderModel
         }
     }
 }
+
+class WarframeModel
+{
+    public static function fetchAll(PDO $pdo): array
+    {
+        $stmt = $pdo->prepare('SELECT id, name, category, description, file_path, created_at FROM warframes ORDER BY created_at DESC');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function fetchById(PDO $pdo, int $id): ?array
+    {
+        $stmt = $pdo->prepare('SELECT * FROM warframes WHERE id = :id');
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch() ?: null;
+    }
+
+    public static function create(PDO $pdo, string $name, string $category, string $description, string $filePath): bool
+    {
+        if ($name === '' || $category === '' || $filePath === '') {
+            return false;
+        }
+
+        $stmt = $pdo->prepare('INSERT INTO warframes (name, category, description, file_path) VALUES (:name, :category, :description, :file_path)');
+        return $stmt->execute([
+            'name' => $name,
+            'category' => $category,
+            'description' => $description,
+            'file_path' => $filePath,
+        ]);
+    }
+}

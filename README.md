@@ -57,14 +57,17 @@ Vite & Gourmand est une application web permettant aux clients des commander des
 
 Les pages publiques utilisent maintenant un shell commun `public/app.php` qui charge le contenu en JavaScript via `js/app.js`.
 
-- `public/api.php` sert une API centralisée pour les menus et la session utilisateur.
+- `public/api.php` sert une API centralisée pour les menus, les commandes, les warframes et la session utilisateur.
 - La page `public/index.php`, `public/menus.php`, `public/about.php`, `public/menus-mongo.php`, `public/menus-combined.php`, `public/mentions-legales.php` et `public/conditions-generales.php` sont des wrappers minimes qui incluent `app.php`.
 - L'authentification et le token CSRF sont exposés via `public/api.php?resource=session` plutôt que via PHP embarqué dans chaque page.
+- Le projet utilise également MongoDB en tant que couche NoSQL optionnelle pour synchroniser les documents de menus et warframes.
 
 ## Warframes de l'interface utilisateur
 
 Les maquettes de l'interface sont maintenant rangées dans `assets/warframes/`.
 Placez vos fichiers PNG/JPEG ici pour garder l'organisation propre.
+
+Le projet contient aussi une table SQL `warframes` pour stocker les métadonnées de design et un endpoint API qui peut exposer ces données via `public/api.php?resource=warframes`.
 
 - Warframe Page d’accueil : `assets/warframes/warframe-accueil.png`
 - Warframe Connexion : `assets/warframes/warframe-login.png`
@@ -95,6 +98,24 @@ Ajoutez les images de validation ici pour le rendu et la présentation.
 Diagramme ERD disponible dans `assets/captures/diagramme-erd-vite-gourmand.png`.
 
 Relations entre les tables users, menus, commandes et ligne_commande.
+
+## Architecture objet-relationnelle
+
+Le dossier `Includes/Models.php` expose des classes OOP pour manipuler les données :
+- `MenuModel` pour les menus SQL
+- `OrderModel` pour la création de commandes et la logique de transaction
+- `WarframeModel` pour les métadonnées warframes
+
+Cette couche sépare la logique métier de la présentation et facilite le passage de SQL à du code orienté objets.
+
+## NoSQL et MongoDB
+
+Une couche NoSQL optionnelle est disponible depuis `Includes/mongo.php`.
+Elle permet de synchroniser des collections MongoDB avec les données SQL existantes, notamment :
+- `menus` via `public/api.php?resource=menus-mongo`
+- `warframes` via `public/api.php?resource=warframes-mongo`
+
+Cela montre une architecture hybride SQL/NoSQL utile pour un projet plus grand.
 
    ## Sécurité mise en place
    - Requêtes préparées PDO (contre injections SQL)

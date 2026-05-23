@@ -29,31 +29,34 @@ try {
     // Seleccionar BD
     $pdo->exec("USE $dbName");
 
-    // Leer el archivo SQL
-    $sqlFile = __DIR__ . '/database/vite_gourmand.sql';
-    if (!file_exists($sqlFile)) {
-        throw new Exception("Archivo SQL no encontrado: $sqlFile");
-    }
-
-    // Parsear y ejecutar SQL
-    $sqlContent = file_get_contents($sqlFile);
-    
-    // Dividir por ";" pero cuidado con comentarios
-    $statements = array_filter(
-        array_map('trim', preg_split('/;(?=([^\']*\'[^\']*\')*[^\']*$)/', $sqlContent)),
-        fn($s) => !empty($s) && !str_starts_with($s, '--') && !str_starts_with($s, '/*')
-    );
+    // Leer y ejecutar todos los archivos SQL de base de datos
+    $sqlFiles = [
+        __DIR__ . '/database/vite_gourmand.sql',
+        __DIR__ . '/database/warframes.sql',
+    ];
 
     $executed = 0;
-    foreach ($statements as $statement) {
-        if (!empty(trim($statement))) {
-            try {
-                $pdo->exec($statement);
-                $executed++;
-            } catch (Exception $e) {
-                // Algunos comandos son ignorables (SET, /*!...)
-                if (stripos($e->getMessage(), 'syntax error') === false) {
-                    // Continuar con siguientes
+    foreach ($sqlFiles as $sqlFile) {
+        if (!file_exists($sqlFile)) {
+            throw new Exception("Archivo SQL no encontrado: $sqlFile");
+        }
+
+        // Parsear y ejecutar SQL
+        $sqlContent = file_get_contents($sqlFile);
+        $statements = array_filter(
+            array_map('trim', preg_split('/;(?=([^\']*\'[^\']*\')*[^\']*$)/', $sqlContent)),
+            fn($s) => !empty($s) && !str_starts_with($s, '--') && !str_starts_with($s, '/*')
+        );
+
+        foreach ($statements as $statement) {
+            if (!empty(trim($statement))) {
+                try {
+                    $pdo->exec($statement);
+                    $executed++;
+                } catch (Exception $e) {
+                    if (stripos($e->getMessage(), 'syntax error') === false) {
+                        // Continuar con siguientes
+                    }
                 }
             }
         }
@@ -61,7 +64,7 @@ try {
     echo "<div class='success'>✅ $executed comandos SQL ejecutados</div>";
 
     // Verificar tablas
-    $tables = ['users', 'menus', 'commandes'];
+    $tables = ['users', 'menus', 'commandes', 'warframes'];
     foreach ($tables as $table) {
         try {
             $result = $pdo->query("SELECT COUNT(*) FROM $table");

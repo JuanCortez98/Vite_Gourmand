@@ -361,6 +361,27 @@ try {
         sendJson(['ok' => true, 'data' => ['synced' => $synced]]);
     }
 
+    if ($resource === 'warframes') {
+        $warframes = WarframeModel::fetchAll($pdo);
+        sendJson(['ok' => true, 'data' => $warframes]);
+    }
+
+    if ($resource === 'warframe' && isset($_GET['id'])) {
+        $id = (int)$_GET['id'];
+        $warframe = WarframeModel::fetchById($pdo, $id);
+        sendJson(['ok' => true, 'data' => $warframe]);
+    }
+
+    if ($resource === 'warframes-mongo') {
+        try {
+            require_once __DIR__ . '/../Includes/mongo.php';
+            $docs = mongoQuery('warframes', [], ['sort' => ['created_at' => -1]]);
+            sendJson(['ok' => true, 'data' => $docs]);
+        } catch (Throwable $e) {
+            sendJson(['ok' => false, 'error' => 'MongoDB non disponible: ' . $e->getMessage()]);
+        }
+    }
+
     // Public endpoint: list available menus (stock > 0)
     if ($resource === 'menus-available') {
         sendJson(['ok' => true, 'data' => MenuModel::fetchAvailable($pdo)]);
