@@ -9,7 +9,7 @@ define('MONGO_DB', 'vite_gourmand');
 
 function getMongoManager() {
     if (!class_exists('MongoDB\Driver\Manager')) {
-        throw new RuntimeException('El driver MongoDB para PHP no está instalado. Instala la extensión mongodb.');
+        throw new RuntimeException('Le driver MongoDB pour PHP n est pas installé. Installez l extension mongodb.');
     }
 
     return new MongoDB\Driver\Manager(MONGO_URI);

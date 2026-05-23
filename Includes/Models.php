@@ -1,6 +1,8 @@
 <?php
 // Fichier de modèles simples pour séparer la logique de la base de données.
-// Classes POPO (PHP orienté objet simple) pour organiser les requêtes SQL.
+// Cette couche objet relationnelle donne une interface métier aux tables SQL.
+// Les classes sont des POPO (Plain Old PHP Objects) qui encapsulent les opérations SQL
+// et la logique de transaction tout en restant légères.
 
 class MenuModel
 {

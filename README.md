@@ -71,8 +71,10 @@ Les pages publiques utilisent un shell commun `public/app.php` qui affiche le co
 
 ## Warframes / maquettes
 
-La dossier `assets/warframes/` contient les maquettes de l'interface.
+Le dossier `assets/warframes/` contient les maquettes de l'interface.
 La base de données SQL contient une table `warframes` pour stocker les métadonnées de design, et l'API peut renvoyer ces données via `public/api.php?resource=warframes`.
+
+La page publique `public/warframes.php` utilise le shell `public/app.php` et `js/app.js` pour charger dynamiquement la liste des warframes depuis l'API. Cela replace les maquettes dans un contexte full-stack et permet de montrer la connexion entre les données métiers et l'affichage.
 
 - Maquette Accueil : `assets/warframes/warframe-accueil.png`
 - Maquette Login : `assets/warframes/warframe-login.png`
@@ -105,19 +107,28 @@ Relations entre les tables `users`, `menus`, `commandes` et `ligne_commande`.
 
 ## Architecture orientée objet
 
-Dans `Includes/Models.php`, il y a des classes simples pour gérer les données :
-- `MenuModel` pour les menus SQL
-- `OrderModel` pour créer les commandes et gérer les transactions
-- `WarframeModel` pour les métadonnées des warframes
+Dans `Includes/Models.php`, une couche objet sépare la logique métier de l'accès aux données. Ces classes jouent un rôle similaire à un mini-ORM orienté objet relationnel :
+- `MenuModel` mappe la table `menus` et fournit les méthodes de lecture, recherche et gestion de stock.
+- `OrderModel` orchestre la création de commandes avec une transaction SQL, validation des quantités et mise à jour du stock.
+- `WarframeModel` gère les métadonnées des maquettes Warframe stockées en SQL, ce qui renforce la cohérence entre l'application et la base de données.
+
+Cette organisation montre une séparation claire entre les entités métier et la présentation, tout en respectant la structure relationnelle de MySQL.
 
 Cette couche sépare la logique métier de l'affichage.
 
 ## NoSQL et MongoDB
 
 Une partie optionnelle utilise MongoDB dans `Includes/mongo.php`.
-C'est un exemple pour montrer une architecture hybride SQL/NoSQL.
+Ce fichier fournit des helpers CRUD simples : requêtes, insertions, mises à jour et suppressions dans des collections MongoDB.
+
+La logique est conçue comme une source de données secondaire ou de synchronisation hybride :
+- les menus SQL peuvent être synchronisés vers MongoDB pour comparer les deux sources,
+- les warframes peuvent aussi être consultées depuis MongoDB si le service est disponible.
+
+Points d'accès utiles :
 - Menus MongoDB : `public/api.php?resource=menus-mongo`
 - Warframes MongoDB : `public/api.php?resource=warframes-mongo`
+- Synchronisation SQL → MongoDB : interface de gestion ou scripts de sync existants.
 
 ## Sécurité
 - Requêtes PDO pour limiter l'injection SQL

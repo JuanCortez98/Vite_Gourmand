@@ -3,6 +3,11 @@
 ## Résumé
 Des corrections ont été apportées pour améliorer la sécurité, la syntaxe et la cohérence du projet. Le but est de présenter un dossier propre et adapté à un projet d'examen.
 Ce document a aussi été mis à jour pour renforcer la présentation full-stack et détailler la structure front-end / back-end.
+
+Des améliorations spécifiques ont été ajoutées pour :
+- clarifier l'usage de NoSQL et MongoDB,
+- préciser le rôle des warframes dans le projet,
+- expliquer plus clairement la couche objet relationnelle.
 ---
 
 ## 📋 Corrections détaillées
