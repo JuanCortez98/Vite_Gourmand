@@ -113,8 +113,8 @@ vite-gourmand/
 │   └── old/               (Estilos específicos por página)
 ├── js/
 │   └── *.js               (Scripts JavaScript)
-└── Scripts/
-    └── vite_gourmand.sql  (Esquema BD)
+└── database/
+    └── vite_gourmand.sql  (Esquema BD + datos semilla)
 ```
 
 ---

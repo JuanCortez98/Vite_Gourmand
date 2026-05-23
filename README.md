@@ -34,7 +34,7 @@ Vite & Gourmand est une application web permettant aux clients des commander des
 1. Installer **XAMPP** (Apache et MySQL)
 2. Démarrer Apache et MySQL
 3. Créer une basé de données nomme 'vite_gourmand'
-4. Importer le script SQL : 'database/vite_gourmand.sql'
+4. Importer les scripts SQL : 'database/vite_gourmand.sql' et 'database/warframes.sql'
 5. Copier le projet dans 'C:\xampp\htdocs\vite-gourmand'
 6. Accéder à l'application : 'http://localhost/vite-gourmand'
 
