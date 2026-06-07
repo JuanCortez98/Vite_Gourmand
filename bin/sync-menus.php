@@ -1,5 +1,5 @@
 <?php
-// CLI script para sincronizar menús SQL -> MongoDB
+// Script CLI pour synchroniser les menus SQL vers MongoDB
 require_once __DIR__ . '/../Includes/config.php';
 require_once __DIR__ . '/../Includes/mongo.php';
 
@@ -15,7 +15,7 @@ try {
     $stmt->execute();
     $menus = $stmt->fetchAll();
 } catch (Throwable $e) {
-    fwrite(STDERR, "Error leyendo MySQL: " . $e->getMessage() . "\n");
+    fwrite(STDERR, "Erreur lors de la lecture de MySQL : " . $e->getMessage() . "\n");
     exit(2);
 }
 
