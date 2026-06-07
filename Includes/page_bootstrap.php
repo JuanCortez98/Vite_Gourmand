@@ -18,7 +18,7 @@ $currentUserEmail = $_SESSION['email'] ?? '';
 function require_role(string $role): void
 {
     if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== $role) {
-        header('Location: ../autentification/login.php');
+        header('Location: ../authentification/login.php');
         exit;
     }
 }

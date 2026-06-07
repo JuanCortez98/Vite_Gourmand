@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once '../Includes/config.php';
 if (isset($_SESSION['user_id'])) {
     header('Location: ../public/index.php');
@@ -24,7 +24,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
             <li><a href="../public/about.php">À propos</a></li>
             <li><a href="../public/menus.php">Menus</a></li>
         </ul>
-        <div class="auth-buttons"><a href="../autentification/login.php" class="btn btn-login">Se connecter</a></div>
+        <div class="auth-buttons"><a href="../authentification/login.php" class="btn btn-login">Se connecter</a></div>
     </nav>
 </header>
 <main class="register-main">
@@ -47,7 +47,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
             </div>
             <button type="submit" class="btn btn-primary">S'inscrire</button>
         </form>
-        <p class="login-link">Vous avez déjà un compte ? <a href="../autentification/login.php">Se connecter</a></p>
+        <p class="login-link">Vous avez déjà un compte ? <a href="../authentification/login.php">Se connecter</a></p>
     </div>
 </main>
 <script src="../js/auth.js" defer></script>

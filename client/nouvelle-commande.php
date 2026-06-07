@@ -163,7 +163,7 @@ foreach ($_SESSION['panier'] as $item) {
         <a href="../public/index.php" class="logo">Vite & Gourmand</a>
         <ul class="nav-links">
             <li><a href="../client/dashboard.php">Mon espace</a></li>
-            <li><a href="../autentification/logout.php" class="btn btn-logout">Déconnexion</a></li>
+            <li><a href="../authentification/logout.php" class="btn btn-logout">Déconnexion</a></li>
         </ul>
     </nav>
 </header>

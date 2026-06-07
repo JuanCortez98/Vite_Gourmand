@@ -1,9 +1,9 @@
 # Vite & Gourmand - Projet scolaire
 
 ## Description
-Ce projet est un dossier de fin d'études réalisé par un développeur débutant après environ 8 mois de formation. L'objectif est de présenter une application fonctionnelle, structurée et claire, tout en montrant une progression professionnelle.
+J'ai réalisé ce projet dans le cadre de mon examen final après environ 8 mois de formation. Mon but était de construire une application claire et fonctionnelle, qui montre un vrai savoir-faire en PHP et JavaScript.
 
-Le projet utilise une architecture full-stack : un front-end JavaScript côté client (`public/app.php` + `js/app.js`) qui consomme un backend PHP centralisé via `public/api.php`.
+J'ai choisi une architecture full-stack : un front-end public rendu par `public/app.php` et `js/app.js`, qui consomme une API backend centralisée dans `public/api.php`.
 
 L'application permet de passer des commandes pour un traiteur avec trois rôles : administrateur, client et travailleur.
 
@@ -83,6 +83,26 @@ La page publique `public/warframes.php` utilise le shell `public/app.php` et `js
 - Maquette Nouvelle commande : `assets/warframes/warframe-nouvelle-commande.png`
 - Maquette Dashboard Admin : `assets/warframes/warframe-dashboard-admin.png`
 
+> Les maquettes sont présentes dans `assets/warframes/`.
+>
+> Fichiers ajoutés :
+> - `warframe-accueil.png`
+> - `warframe-login.png`
+> - `warframe-register.png`
+> - `warframe-dashboard-client.png`
+> - `warframe-nouvelle-commande.png`
+> - `warframe-dashboard-admin.png`
+
+### Galerie maquettes
+
+| Accueil | Login | Inscription |
+|---|---|---|
+| ![Accueil](assets/warframes/warframe-accueil.png) | ![Login](assets/warframes/warframe-login.png) | ![Inscription](assets/warframes/warframe-register.png) |
+
+| Dashboard Client | Nouvelle commande | Dashboard Admin |
+|---|---|---|
+| ![Dashboard client](assets/warframes/warframe-dashboard-client.png) | ![Nouvelle commande](assets/warframes/warframe-nouvelle-commande.png) | ![Dashboard admin](assets/warframes/warframe-dashboard-admin.png) |
+
 ## Captures d'écran
 
 Les captures sont dans `assets/captures/`.
@@ -99,6 +119,22 @@ Les captures sont dans `assets/captures/`.
 10. Gestion Menus (admin) — `assets/captures/gestion-menus-admin.jpeg`
 11. Gestion Commandes (admin) — `assets/captures/gestion-commandes-admin.jpeg`
 
+> Les captures sont présentes dans `assets/captures/`.
+>
+> Fichiers ajoutés :
+> - `Accueil.jpeg`
+> - `About.jpeg`
+> - `login.jpeg`
+> - `register.jpeg`
+> - `dashboard-client.jpeg`
+> - `nouvelle-commande.jpeg`
+> - `dashboard-travailleur.jpeg`
+> - `dashboard-admin.jpeg`
+> - `gestion-utilisateurs-admin.jpeg`
+> - `gestion-menus-admin.jpeg`
+> - `gestion-commandes-admin.jpeg`
+> - `diagramme-erd-vite-gourmand.png`
+
 ## Diagramme ER
 
 Diagramme ER disponible dans `assets/captures/diagramme-erd-vite-gourmand.png`.
@@ -112,16 +148,16 @@ Dans `Includes/Models.php`, une couche objet sépare la logique métier de l'acc
 - `OrderModel` orchestre la création de commandes avec une transaction SQL, validation des quantités et mise à jour du stock.
 - `WarframeModel` gère les métadonnées des maquettes Warframe stockées en SQL, ce qui renforce la cohérence entre l'application et la base de données.
 
-Cette organisation montre une séparation claire entre les entités métier et la présentation, tout en respectant la structure relationnelle de MySQL.
+Ce choix met en évidence une séparation claire entre les entités métier et l'affichage, tout en respectant la structure relationnelle de MySQL.
 
-Cette couche sépare la logique métier de l'affichage.
+Cette couche garde la logique métier hors de la vue.
 
 ## NoSQL et MongoDB
 
-Une partie optionnelle utilise MongoDB dans `Includes/mongo.php`.
-Ce fichier fournit des helpers CRUD simples : requêtes, insertions, mises à jour et suppressions dans des collections MongoDB.
+J'ai ajouté une partie optionnelle avec MongoDB dans `Includes/mongo.php`.
+Ce fichier contient des helpers CRUD simples : requêtes, insertions, mises à jour et suppressions dans des collections MongoDB.
 
-La logique est conçue comme une source de données secondaire ou de synchronisation hybride :
+J'ai pensé cette logique comme une source de données secondaire ou une démonstration de synchronisation hybride :
 - les menus SQL peuvent être synchronisés vers MongoDB pour comparer les deux sources,
 - les warframes peuvent aussi être consultées depuis MongoDB si le service est disponible.
 
@@ -144,7 +180,7 @@ Points d'accès utiles :
 
 ---
 
-> Ce projet est présenté comme un dossier professionnel simple, créé par un développeur en début de carrière. Le code est structuré et clair, mais il reste évolutif pour une mise en production plus avancée.
+> Je présente ce projet comme un dossier professionnel simple, réalisé par un développeur en début de carrière. Le code est structuré et clair, mais il reste évolutif pour une mise en production plus avancée.
 
 **Dernière mise à jour :** mai 2026
 **Statut :** ✅ Prêt pour validation et examen

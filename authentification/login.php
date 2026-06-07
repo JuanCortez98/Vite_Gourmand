@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once '../Includes/config.php';
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['role'] === 'admin') {

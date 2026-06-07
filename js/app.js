@@ -9,10 +9,10 @@ function escapeHtml(value) {
 
 function renderAuth(session) {
   if (!authRoot) return;
-  if (session.loggedIn) {
-    authRoot.innerHTML = `<span class="welcome">Bonjour, ${escapeHtml(session.email || 'Utilisateur')} (${escapeHtml(session.role || 'client')})</span> <a href="../autentification/logout.php" class="btn btn-logout">Déconnexion</a>`;
+    if (session.loggedIn) {
+    authRoot.innerHTML = `<span class="welcome">Bonjour, ${escapeHtml(session.email || 'Utilisateur')} (${escapeHtml(session.role || 'client')})</span> <a href="../authentification/logout.php" class="btn btn-logout">Déconnexion</a>`;
   } else {
-    authRoot.innerHTML = `<a href="../autentification/login.php" class="btn btn-login">Se connecter</a> <a href="../autentification/register.php" class="btn btn-register">S'inscrire</a>`;
+    authRoot.innerHTML = `<a href="../authentification/login.php" class="btn btn-login">Se connecter</a> <a href="../authentification/register.php" class="btn btn-register">S'inscrire</a>`;
   }
 }
 

@@ -1,8 +1,8 @@
 # 🔧 Corrections effectuées - Vite & Gourmand
 
 ## Résumé
-Des corrections ont été apportées pour améliorer la sécurité, la syntaxe et la cohérence du projet. Le but est de présenter un dossier propre et adapté à un projet d'examen.
-Ce document a aussi été mis à jour pour renforcer la présentation full-stack et détailler la structure front-end / back-end.
+J'ai apporté des corrections pour améliorer la sécurité, la syntaxe et la cohérence du projet. L'objectif est d'avoir un dossier propre et adapté à un examen.
+Ce document a aussi été mis à jour pour mieux expliquer la structure full-stack et la séparation front-end / back-end.
 
 Des améliorations spécifiques ont été ajoutées pour :
 - clarifier l'usage de NoSQL et MongoDB,
@@ -43,7 +43,7 @@ Des améliorations spécifiques ont été ajoutées pour :
 
 ---
 
-### 3. **autentification/login.php** ✅
+### 3. **authentification/login.php** ✅
 **Problèmes identifiés :**
 - Absence de protection CSRF dans le formulaire
 - Token CSRF manquant dans le HTML
@@ -54,7 +54,7 @@ Des améliorations spécifiques ont été ajoutées pour :
 
 ---
 
-### 4. **autentification/register.php** ✅
+### 4. **authentification/register.php** ✅
 **Problèmes identifiés :**
 - Formulaire d'inscription sans protection CSRF
 - Validation d'email correcte, mais pas de CSRF

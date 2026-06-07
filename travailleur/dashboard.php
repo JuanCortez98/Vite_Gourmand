@@ -18,7 +18,7 @@ $username = $currentUserEmail ?: 'Travailleur';
         <a href="../public/index.php" class="logo">Vite & Gourmand</a>
         <ul class="nav-links">
             <li><a href="../travailleur/dashboard.php" class="active">Dashboard</a></li>
-            <li><a href="../autentification/logout.php" class="btn btn-logout">Déconnexion</a></li>
+            <li><a href="../authentification/logout.php" class="btn btn-logout">Déconnexion</a></li>
         </ul>
     </nav>
 </header>

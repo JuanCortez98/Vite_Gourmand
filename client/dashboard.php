@@ -19,7 +19,7 @@ $username = $currentUserEmail ?: 'Client';
         <ul class="nav-links">
             <li><a href="../client/dashboard.php" class="active">Mon espace</a></li>
             <li><a href="../public/menus.php">Menus</a></li>
-            <li><a href="../autentification/logout.php" class="btn btn-logout">Déconnexion</a></li>
+            <li><a href="../authentification/logout.php" class="btn btn-logout">Déconnexion</a></li>
         </ul>
     </nav>
 </header>

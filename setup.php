@@ -92,8 +92,8 @@ try {
     echo "<p>Votre application est prête. Accédez à :</p>";
     echo "<ul>";
     echo "<li><a href='./public/index.php'>Page d'accueil</a></li>";
-    echo "<li><a href='./autentification/login.php'>Connexion</a></li>";
-    echo "<li><a href='./autentification/register.php'>Inscription</a></li>";
+    echo "<li><a href='./authentification/login.php'>Connexion</a></li>";
+    echo "<li><a href='./authentification/register.php'>Inscription</a></li>";
     echo "</ul>";
     echo "<p><strong>Comptes de test :</strong></p>";
     echo "<ul>";

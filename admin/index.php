@@ -25,7 +25,7 @@ $username = $currentUserEmail ?: 'Administrateur';
         </ul>
         <div class="admin-user">
             <span>Bonjour, <?= htmlspecialchars($username) ?></span>
-            <a href="../autentification/logout.php" class="btn btn-logout">Déconnexion</a>
+            <a href="../authentification/logout.php" class="btn btn-logout">Déconnexion</a>
         </div>
     </nav>
 </header>

@@ -25,7 +25,7 @@ $csrfToken = $csrfToken ?? $_SESSION['csrf_token'];
         </ul>
         <div class="admin-user">
             <span>Bonjour, <?= htmlspecialchars($_SESSION['email'] ?? 'Admin') ?></span>
-            <a href="../autentification/logout.php" class="btn btn-logout">Déconnexion</a>
+            <a href="../authentification/logout.php" class="btn btn-logout">Déconnexion</a>
         </div>
     </nav>
 </header>
